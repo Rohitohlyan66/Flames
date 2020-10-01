@@ -20,6 +20,7 @@ public class FlamesActivity extends AppCompatActivity {
     ImageView output_img;
     Button back;
 
+
     String yourName, yourNameDisplay, partnerName, partnerNameDisplay, completeName;
     String[] arr_yourName, arr_partnerName, arr_completeName;
 
@@ -30,7 +31,9 @@ public class FlamesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         yourNameDisplay = intent.getStringExtra("your_name");
-        partnerNameDisplay =intent.getStringExtra("your_partner");
+        partnerNameDisplay = intent.getStringExtra("your_partner");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         output_img = findViewById(R.id.output_img);
         back = findViewById(R.id.back);
@@ -50,18 +53,18 @@ public class FlamesActivity extends AppCompatActivity {
 
     public void processName() {
         yourNameDisplay =
-        yourName = yourNameDisplay.toLowerCase().replaceAll("\\s+", "");
+                yourName = yourNameDisplay.toLowerCase().replaceAll("\\s+", "");
         arr_yourName = yourName.split("");
 
         partnerNameDisplay =
-        partnerName = partnerNameDisplay.toLowerCase().replaceAll("\\s+", "");
+                partnerName = partnerNameDisplay.toLowerCase().replaceAll("\\s+", "");
         arr_partnerName = partnerName.split("");
     }
 
     public void eliminateCommonLetters() {
         for (String i : arr_yourName) {
             for (String j : arr_partnerName) {
-                if ( i.equals(j) ) {
+                if (i.equals(j)) {
                     arr_yourName = ArrayUtils.removeElement(arr_yourName, i);
                     arr_partnerName = ArrayUtils.removeElement(arr_partnerName, j);
                     break;
@@ -127,9 +130,9 @@ public class FlamesActivity extends AppCompatActivity {
     }
 
     private void updateUi() {
-        Intent intent1 = new Intent(FlamesActivity.this,MainActivity.class);
+        Intent intent1 = new Intent(FlamesActivity.this, MainActivity.class);
         startActivity(intent1);
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 }
